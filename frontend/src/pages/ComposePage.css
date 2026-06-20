@@ -1,0 +1,258 @@
+/* ── Compose Page ────────────────────────────────────────────── */
+
+.compose-page {
+  max-width: 1100px;
+}
+
+.compose-layout {
+  display: grid;
+  grid-template-columns: 1fr 360px;
+  gap: 28px;
+  align-items: start;
+}
+
+@media (max-width: 900px) {
+  .compose-layout {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Sections */
+.compose-section {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  padding: 24px;
+  margin-bottom: 20px;
+}
+
+.compose-section h3 {
+  font-size: 1rem;
+  font-weight: 700;
+  margin-bottom: 16px;
+  color: var(--text-primary);
+}
+
+.compose-empty-list {
+  text-align: center;
+  padding: 24px;
+  color: var(--text-muted);
+}
+
+.compose-empty-list p {
+  margin-bottom: 12px;
+}
+
+/* List selection */
+.compose-list-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.compose-list-option {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 14px 16px;
+  background: var(--bg-primary);
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.compose-list-option:hover {
+  border-color: var(--border-hover);
+  background: var(--bg-surface-hover);
+}
+
+.compose-list-option.selected {
+  border-color: var(--accent-start);
+  background: rgba(99, 102, 241, 0.08);
+}
+
+.compose-list-option input[type="radio"] {
+  display: none;
+}
+
+.compose-list-option-content {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex: 1;
+}
+
+.compose-list-option-icon {
+  font-size: 1.25rem;
+}
+
+.compose-list-option-name {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.compose-list-option-count {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+
+.compose-list-option-check {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: var(--accent-gradient);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.75rem;
+  font-weight: 700;
+}
+
+/* Textarea */
+.compose-textarea-wrapper {
+  position: relative;
+}
+
+.compose-textarea {
+  min-height: 200px;
+  font-size: 0.9375rem;
+  line-height: 1.6;
+}
+
+.compose-char-count {
+  position: absolute;
+  bottom: 12px;
+  right: 16px;
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+
+.compose-char-warning {
+  color: var(--warning);
+  font-weight: 600;
+}
+
+/* Actions */
+.compose-actions {
+  display: flex;
+  justify-content: flex-end;
+}
+
+/* ── WhatsApp Preview ───────────────────────────────────────── */
+
+.compose-preview {
+  position: sticky;
+  top: 32px;
+}
+
+.compose-preview h3 {
+  font-size: 1rem;
+  font-weight: 700;
+  margin-bottom: 14px;
+  color: var(--text-primary);
+}
+
+.whatsapp-preview {
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  border: 1px solid var(--border-subtle);
+}
+
+.whatsapp-preview-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 16px;
+  background: #075E54;
+}
+
+.whatsapp-preview-header-avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+}
+
+.whatsapp-preview-header-name {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: white;
+}
+
+.whatsapp-preview-header-status {
+  font-size: 0.7rem;
+  color: rgba(255,255,255,0.7);
+}
+
+.whatsapp-preview-body {
+  background: #0b141a;
+  padding: 20px 14px;
+  min-height: 200px;
+  position: relative;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100'%3E%3Crect fill='%23ffffff' fill-opacity='0.02' width='1' height='1' x='20' y='20'/%3E%3Crect fill='%23ffffff' fill-opacity='0.02' width='1' height='1' x='60' y='60'/%3E%3Crect fill='%23ffffff' fill-opacity='0.02' width='1' height='1' x='80' y='30'/%3E%3C/svg%3E");
+}
+
+.whatsapp-bubble {
+  background: #005C4B;
+  border-radius: 8px 8px 8px 0;
+  padding: 8px 12px;
+  max-width: 90%;
+  display: inline-block;
+}
+
+.whatsapp-bubble-text {
+  font-size: 0.875rem;
+  color: #e9edef;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  line-height: 1.5;
+}
+
+.whatsapp-bubble-time {
+  text-align: right;
+  font-size: 0.65rem;
+  color: rgba(233,237,239,0.6);
+  margin-top: 4px;
+}
+
+.whatsapp-preview-placeholder {
+  text-align: center;
+  color: rgba(255,255,255,0.2);
+  font-size: 0.875rem;
+  padding: 60px 20px;
+}
+
+/* Preview info */
+.compose-preview-info {
+  margin-top: 16px;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  padding: 16px 20px;
+}
+
+.compose-preview-info-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 0;
+  font-size: 0.8125rem;
+  color: var(--text-muted);
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.compose-preview-info-row:last-child {
+  border-bottom: none;
+}
+
+.compose-preview-info-value {
+  font-weight: 600;
+  color: var(--text-primary);
+}
