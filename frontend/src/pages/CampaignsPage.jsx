@@ -12,19 +12,6 @@ export default function CampaignsPage() {
   const [loadingLogs, setLoadingLogs] = useState(false);
   const toast = useToast();
 
-  useEffect(() => {
-    loadJobs();
-  }, []);
-
-  // Auto-refresh for active jobs
-  useEffect(() => {
-    const hasActive = jobs.some((j) => j.status === 'sending' || j.status === 'pending');
-    if (!hasActive) return;
-
-    const interval = setInterval(loadJobs, 3000);
-    return () => clearInterval(interval);
-  }, [jobs]);
-
   const loadJobs = async () => {
     try {
       const res = await messagesAPI.getJobs();
@@ -36,6 +23,33 @@ export default function CampaignsPage() {
     }
   };
 
+  useEffect(() => {
+    let active = true;
+    const fetchJobs = async () => {
+      try {
+        const res = await messagesAPI.getJobs();
+        if (active) setJobs(res.data.jobs);
+      } catch (err) {
+        console.error('Load jobs error:', err);
+      } finally {
+        if (active) setLoading(false);
+      }
+    };
+    fetchJobs();
+    return () => {
+      active = false;
+    };
+  }, []);
+
+  // Auto-refresh for active jobs
+  useEffect(() => {
+    const hasActive = jobs.some((j) => j.status === 'sending' || j.status === 'pending');
+    if (!hasActive) return;
+
+    const interval = setInterval(loadJobs, 3000);
+    return () => clearInterval(interval);
+  }, [jobs]);
+
   const viewJobDetail = async (job) => {
     setSelectedJob(job);
     setLoadingLogs(true);
@@ -43,7 +57,7 @@ export default function CampaignsPage() {
       const res = await messagesAPI.getJobDetail(job.id);
       setSelectedJob(res.data.job);
       setJobLogs(res.data.logs);
-    } catch (err) {
+    } catch {
       toast.error('Failed to load job details');
     } finally {
       setLoadingLogs(false);
@@ -97,10 +111,10 @@ export default function CampaignsPage() {
 
       {jobs.length === 0 ? (
         <div className="empty-state">
-          <div className="empty-state-icon">📡</div>
-          <div className="empty-state-title">No campaigns yet</div>
+          <img src="/logo.png" className="empty-state-logo-img" alt="Cuckoo bird logo" style={{ width: '64px', height: '64px', objectFit: 'contain', marginBottom: '16px', opacity: '0.7' }} />
+          <div className="empty-state-title">Your nest is empty.</div>
           <div className="empty-state-description">
-            Your broadcast campaigns will appear here once you send your first message.
+            Launch your first broadcast campaign.
           </div>
         </div>
       ) : (

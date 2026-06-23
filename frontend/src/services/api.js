@@ -78,6 +78,16 @@ export const messagesAPI = {
 const WA_BASE = 'http://localhost:3001/api/wa';
 const waApi = axios.create({ baseURL: WA_BASE });
 
+const WA_API_KEY = import.meta.env.VITE_WA_API_KEY;
+if (!WA_API_KEY) {
+  throw new Error('Missing VITE_WA_API_KEY');
+}
+
+waApi.interceptors.request.use((config) => {
+  config.headers.Authorization = `Bearer ${WA_API_KEY}`;
+  return config;
+});
+
 export const whatsappAPI = {
   getStatus: () => waApi.get('/status'),
   getQR: () => waApi.get('/qr'),
@@ -85,12 +95,15 @@ export const whatsappAPI = {
   uploadFile: (file) => {
     const formData = new FormData();
     formData.append('file', file);
-    return waApi.post('/upload', formData, {
+    return waApi.post('/contacts/discover', formData, {
       headers: { 'Content-Type': 'multipart/form-data' },
     });
   },
+  aiAction: (endpoint, payload) => waApi.post(endpoint, payload),
   sendBroadcast: (data) => waApi.post('/send', data),
   getJob: (jobId) => waApi.get(`/job/${jobId}`),
+  getJobs: () => waApi.get('/jobs'),
+  refreshQR: () => waApi.post('/qr/refresh'),
 };
 
 export default api;

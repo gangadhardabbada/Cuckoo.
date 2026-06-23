@@ -81,8 +81,8 @@ export default function AuthPage() {
         <div className="auth-card">
           {/* Logo */}
           <div className="auth-logo">
-            <span className="auth-logo-icon">📨</span>
-            <h1>WA Broadcaster</h1>
+            <img src="/logo.png" className="auth-logo-img" alt="Cuckoo Logo" style={{ height: '48px', width: '48px', objectFit: 'contain', marginBottom: '12px' }} />
+            <h1>Cuckoo</h1>
           </div>
 
           {step === 1 ? (

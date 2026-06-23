@@ -1,16 +1,25 @@
-# React + Vite
+# Cuckoo Frontend - React App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This is the React + Vite frontend interface for Cuckoo, the private WhatsApp broadcasting dashboard.
 
-Currently, two official plugins are available:
+## 📦 Directory Structure
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- `/src/pages`: Contains main pages including `WhatsAppPage.jsx` (which holds the onboarding guided UX and the Campaign Composer steps) and pages for campaigns, dashboard, FAQ, profile, and settings.
+- `/src/components`: UI components such as Navbar, Modals, and toast notifications.
+- `/src/context`: React context providers (e.g., `ToastContext`).
+- `/src/services`: REST client modules targeting the Flask and Node.js backend endpoints.
+- `/src/index.css`: Global styles, layout configurations, variables, and typography definitions.
 
-## React Compiler
+## 🛠️ Key Scripts
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- **`npm run dev`**: Starts the local Vite development server on port `5173`.
+- **`npm run build`**: Compiles the assets, builds, and bundles the client production pages in `/dist`.
+- **`npm run lint`**: Inspects static JS/JSX code for styling issues.
 
-## Expanding the ESLint configuration
+## ⚙️ Environment Variables
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+The client reads environment settings from CSS/JS parameters. By default:
+
+- WhatsApp Socket & API services: `http://localhost:3001`
+- Flask endpoints: `http://localhost:5000`
+- Token verification headers: `VITE_WA_API_KEY`

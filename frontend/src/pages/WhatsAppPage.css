@@ -1,299 +1,408 @@
 /* ══════════════════════════════════════════════════════════════
-   WhatsApp Web Page — Premium Design
+   WhatsApp Web Page — Onboarding Guided UX
    ══════════════════════════════════════════════════════════════ */
 
-.wa-page {
-  max-width: 1100px;
+.wa-onboarding-page {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 40px 20px;
 }
 
-/* ── Status Banner ──────────────────────────────────────────── */
-
-.wa-status-banner {
-  display: flex;
-  align-items: center;
-  gap: 14px;
-  padding: 16px 24px;
-  border-radius: var(--radius-lg);
-  margin-bottom: 28px;
-  border: 1px solid;
-  transition: all var(--transition-base);
-}
-
-.wa-status-banner.disconnected {
-  background: rgba(148, 163, 184, 0.06);
-  border-color: rgba(148, 163, 184, 0.15);
-  color: var(--text-secondary);
-}
-
-.wa-status-banner.initializing {
-  background: rgba(245, 158, 11, 0.08);
-  border-color: rgba(245, 158, 11, 0.2);
-  color: var(--warning);
-}
-
-.wa-status-banner.qr_ready {
-  background: rgba(59, 130, 246, 0.08);
-  border-color: rgba(59, 130, 246, 0.2);
-  color: var(--info);
-}
-
-.wa-status-banner.connected {
-  background: rgba(37, 211, 102, 0.08);
-  border-color: rgba(37, 211, 102, 0.2);
-  color: var(--whatsapp);
-}
-
-.wa-status-dot {
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-  flex-shrink: 0;
-}
-
-.wa-status-banner.disconnected .wa-status-dot {
-  background: var(--text-muted);
-}
-
-.wa-status-banner.initializing .wa-status-dot {
-  background: var(--warning);
-  animation: pulse 1.4s ease-in-out infinite;
-}
-
-.wa-status-banner.qr_ready .wa-status-dot {
-  background: var(--info);
-  animation: pulse 1.4s ease-in-out infinite;
-}
-
-.wa-status-banner.connected .wa-status-dot {
-  background: var(--whatsapp);
-  box-shadow: 0 0 8px rgba(37, 211, 102, 0.6);
-}
-
-@keyframes pulse {
-  0%, 100% { opacity: 1; transform: scale(1); }
-  50%       { opacity: 0.5; transform: scale(0.85); }
-}
-
-.wa-status-text {
-  font-size: 0.9rem;
-  font-weight: 500;
-  flex: 1;
-}
-
-/* ── Main Layout ────────────────────────────────────────────── */
-
-.wa-layout {
-  display: grid;
-  grid-template-columns: 340px 1fr;
-  gap: 28px;
-  align-items: start;
-}
-
-@media (max-width: 900px) {
-  .wa-layout {
-    grid-template-columns: 1fr;
-  }
-}
-
-/* ── Connection Panel ────────────────────────────────────────── */
-
-.wa-connect-panel {
-  background: var(--bg-surface);
-  border: 1px solid var(--border-subtle);
-  border-radius: var(--radius-xl);
-  padding: 28px;
+.wa-onboarding-header {
   text-align: center;
-  position: sticky;
-  top: 24px;
+  margin-bottom: 36px;
 }
 
-.wa-connect-panel h3 {
-  font-size: 1.1rem;
-  font-weight: 700;
-  margin-bottom: 6px;
+.wa-onboarding-header h1 {
+  font-size: 2rem;
+  font-weight: 800;
+  margin: 0 0 6px 0;
   color: var(--text-primary);
 }
 
-.wa-connect-panel p {
-  font-size: 0.8375rem;
+.wa-onboarding-header p {
+  font-size: 0.95rem;
   color: var(--text-muted);
-  margin-bottom: 24px;
-  line-height: 1.5;
+  margin: 0;
 }
 
-/* QR Code Box */
-.wa-qr-box {
-  width: 220px;
-  height: 220px;
-  margin: 0 auto 20px;
-  border-radius: var(--radius-lg);
-  overflow: hidden;
-  position: relative;
-  background: white;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.wa-qr-box img {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-}
-
-.wa-qr-placeholder {
+.wa-onboarding-flow {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 12px;
-  width: 100%;
-  height: 100%;
-  background: var(--bg-primary);
-  border-radius: var(--radius-lg);
-  border: 2px dashed var(--border-default);
+  gap: 32px;
 }
 
-.wa-qr-placeholder-icon {
-  font-size: 3rem;
-  opacity: 0.3;
-}
+/* ── Card Styling ───────────────────────────────────────────── */
 
-.wa-qr-placeholder-text {
-  font-size: 0.8rem;
-  color: var(--text-muted);
-  text-align: center;
-  padding: 0 12px;
-}
-
-/* Connected state in panel */
-.wa-connected-state {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 16px;
-  padding: 12px 0;
-}
-
-.wa-connected-icon {
-  width: 90px;
-  height: 90px;
-  border-radius: 50%;
-  background: rgba(37, 211, 102, 0.12);
-  border: 2px solid rgba(37, 211, 102, 0.3);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 2.5rem;
-  animation: scaleIn 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
-}
-
-@keyframes scaleIn {
-  from { transform: scale(0); opacity: 0; }
-  to   { transform: scale(1); opacity: 1; }
-}
-
-.wa-connected-label {
-  font-size: 1rem;
-  font-weight: 700;
-  color: var(--whatsapp);
-}
-
-.wa-connected-sub {
-  font-size: 0.8rem;
-  color: var(--text-muted);
-}
-
-/* Steps */
-.wa-steps {
-  text-align: left;
-  margin-top: 20px;
-  border-top: 1px solid var(--border-subtle);
-  padding-top: 20px;
-}
-
-.wa-step {
-  display: flex;
-  align-items: flex-start;
-  gap: 12px;
-  margin-bottom: 14px;
-}
-
-.wa-step:last-child {
-  margin-bottom: 0;
-}
-
-.wa-step-num {
-  width: 22px;
-  height: 22px;
-  border-radius: 50%;
-  background: var(--bg-elevated);
-  border: 1px solid var(--border-default);
-  font-size: 0.7rem;
-  font-weight: 700;
-  color: var(--text-muted);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
-  margin-top: 1px;
-}
-
-.wa-step-text {
-  font-size: 0.8125rem;
-  color: var(--text-secondary);
-  line-height: 1.5;
-}
-
-/* ── Send Panel ──────────────────────────────────────────────── */
-
-.wa-send-panel {
-  display: flex;
-  flex-direction: column;
-  gap: 24px;
-}
-
-.wa-section {
+.wa-card {
   background: var(--bg-surface);
   border: 1px solid var(--border-subtle);
   border-radius: var(--radius-xl);
-  padding: 28px;
+  padding: 32px;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.03);
+  transition: all var(--transition-base);
 }
 
-.wa-section h3 {
+.wa-card-header {
+  margin-bottom: 24px;
+}
+
+.wa-card-header h2 {
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin: 0 0 6px 0;
+}
+
+.wa-card-header p {
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+  margin: 0;
+  line-height: 1.5;
+}
+
+.wa-card-subtitle {
+  font-size: 0.8rem !important;
+  color: var(--text-muted) !important;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-top: 4px !important;
+}
+
+/* ── Two Column Setup (Instructions + QR) ────────────────────── */
+
+.wa-two-col-layout {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 32px;
+  align-items: center;
+}
+
+@media (max-width: 680px) {
+  .wa-two-col-layout {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+}
+
+.wa-col-instructions {
+  display: flex;
+  flex-direction: column;
+}
+
+.wa-col-instructions h3 {
   font-size: 1rem;
   font-weight: 700;
-  margin-bottom: 18px;
+  margin: 0 0 12px 0;
+  color: var(--text-primary);
+}
+
+.wa-instructions-list {
+  padding-left: 20px;
+  margin: 0;
+}
+
+.wa-instructions-list li {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  line-height: 1.7;
+  margin-bottom: 10px;
+}
+
+.wa-instructions-list li strong {
+  color: var(--text-primary);
+}
+
+/* ── QR Code Containers ──────────────────────────────────────── */
+
+.wa-col-qr {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.wa-qr-blur-box, 
+.wa-qr-active-box, 
+.wa-qr-initial-box, 
+.wa-qr-loading-box, 
+.wa-qr-expired-box {
+  width: 280px;
+  height: 280px;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border-default);
+  position: relative;
+  overflow: hidden;
+  background: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.02);
+}
+
+.wa-qr-initial-box {
+  border: 2px dashed var(--border-default);
+  background: var(--bg-primary);
+}
+
+.wa-qr-loading-box {
+  gap: 12px;
+  color: var(--text-muted);
+  font-size: 0.8rem;
+}
+
+.wa-qr-expired-box {
+  padding: 20px;
+  text-align: center;
+}
+
+.wa-expired-warning {
+  color: var(--error);
+  font-weight: 700;
+  font-size: 1rem;
+  margin-bottom: 6px;
+}
+
+.wa-qr-expired-box p {
+  font-size: 0.775rem;
+  color: var(--text-muted);
+  margin: 0 0 16px 0;
+  line-height: 1.4;
+}
+
+/* Blurred state */
+.wa-qr-blur-box {
+  border: 1px solid var(--border-subtle);
+}
+
+.wa-qr-blurred-image {
+  width: 200px;
+  height: 200px;
+  background: radial-gradient(circle, #ddd 10%, transparent 11%), radial-gradient(circle, #ddd 10%, transparent 11%);
+  background-size: 16px 16px;
+  background-position: 0 0, 8px 8px;
+  filter: blur(8px);
+  opacity: 0.45;
+}
+
+.wa-qr-reveal-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.45);
+  -webkit-backdrop-filter: blur(1.5px);
+  backdrop-filter: blur(1.5px);
+}
+
+/* ── WhatsApp Web Styled QR UI ──────────────────────────────── */
+
+.wa-qr-img-wrapper {
+  width: 260px;
+  height: 260px;
+  background: white;
+  padding: 16px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.wa-qr-image {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  -webkit-user-select: none !important;
+  user-select: none !important;
+  pointer-events: none !important;
+}
+
+/* Simple Countdown */
+.wa-countdown-container-simple {
+  text-align: center;
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+}
+
+/* Secure Badge Info */
+.wa-secure-badge-info {
+  margin-top: 24px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--text-secondary);
+  font-size: 0.85rem;
+}
+
+.wa-secure-badge-info .secure-icon {
+  font-size: 1rem;
+}
+
+/* Simple Spinner */
+.wa-premium-spinner {
+  width: 32px;
+  height: 32px;
+  border: 3px solid #e0e0e0;
+  border-top-color: var(--brand-primary);
+  border-radius: 50%;
+  animation: wa-spin 1s linear infinite;
+}
+
+@keyframes wa-spin {
+  to { transform: rotate(360deg); }
+}
+
+/* ── Successful Connection State ────────────────────────────── */
+
+.wa-connected-state-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  width: 100%;
+}
+
+.wa-success-badge {
+  background: rgba(120, 214, 75, 0.08);
+  border: 1px solid rgba(120, 214, 75, 0.25);
+  color: var(--brand-primary);
+  padding: 12px 28px;
+  border-radius: var(--radius-full);
+  font-size: 1.05rem;
+  font-weight: 700;
   display: flex;
   align-items: center;
   gap: 8px;
+  box-shadow: 0 2px 10px rgba(120, 214, 75, 0.06);
 }
 
-/* Upload area */
+.badge-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: var(--whatsapp);
+  color: white;
+  font-size: 0.65rem;
+  font-weight: 900;
+}
+
+.wa-connection-metadata {
+  width: 100%;
+  max-width: 440px;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  padding: 16px 20px;
+}
+
+.meta-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--border-subtle);
+  font-size: 0.875rem;
+}
+
+.meta-row:last-child {
+  border-bottom: none;
+}
+
+.meta-label {
+  color: var(--text-muted);
+}
+
+.meta-value {
+  color: var(--text-primary);
+  font-weight: 600;
+}
+
+.meta-value.status-active {
+  color: var(--whatsapp);
+}
+
+/* ── Card 2: Before Connection State ────────────────────────── */
+
+.wa-checklist {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin: 24px 0;
+}
+
+.wa-checklist-item {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+}
+
+.wa-checklist-item.active {
+  color: var(--text-primary);
+  font-weight: 700;
+}
+
+.wa-checklist-item.disabled {
+  color: var(--text-muted);
+  opacity: 0.55;
+}
+
+.item-icon {
+  font-size: 1.15rem;
+  width: 24px;
+  text-align: center;
+}
+
+.wa-setup-footer-message {
+  text-align: center;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  border-top: 1px solid var(--border-subtle);
+  padding-top: 16px;
+}
+
+/* ── Card 2: After Connection Wizard Steps ───────────────────── */
+
+.wa-setup-wizard {
+  width: 100%;
+}
+
+.wizard-body {
+  margin-top: 24px;
+}
+
+/* Step 2: Upload Contacts styling */
 .wa-upload-zone {
   border: 2px dashed var(--border-default);
   border-radius: var(--radius-lg);
-  padding: 36px 24px;
+  padding: 44px 24px;
   text-align: center;
   cursor: pointer;
   transition: all var(--transition-base);
-  background: var(--bg-secondary);
+  background: var(--bg-surface);
 }
 
 .wa-upload-zone:hover,
 .wa-upload-zone.active {
-  border-color: var(--whatsapp);
-  background: rgba(37, 211, 102, 0.04);
+  border-color: var(--brand-primary);
+  background: rgba(120, 214, 75, 0.04);
 }
 
 .wa-upload-zone-icon {
-  font-size: 2.5rem;
-  margin-bottom: 12px;
-  opacity: 0.5;
+  font-size: 2.8rem;
+  margin-bottom: 14px;
+  opacity: 0.6;
 }
 
 .wa-upload-zone-text {
-  font-size: 0.9rem;
+  font-size: 0.95rem;
   color: var(--text-secondary);
   margin-bottom: 6px;
 }
@@ -303,308 +412,2008 @@
   color: var(--text-muted);
 }
 
-/* Contacts summary */
-.wa-contacts-summary {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 14px 18px;
-  background: rgba(37, 211, 102, 0.07);
-  border: 1px solid rgba(37, 211, 102, 0.2);
-  border-radius: var(--radius-md);
-  margin-top: 14px;
-}
-
-.wa-contacts-summary-left {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
-.wa-contacts-summary-icon {
-  font-size: 1.4rem;
-}
-
-.wa-contacts-summary-info strong {
-  display: block;
-  font-size: 0.9rem;
-  color: var(--text-primary);
-  font-weight: 600;
-}
-
-.wa-contacts-summary-info span {
-  font-size: 0.775rem;
-  color: var(--text-muted);
-}
-
-/* Preview table */
-.wa-preview-table-wrapper {
-  max-height: 260px;
-  overflow-y: auto;
-  border-radius: var(--radius-md);
+/* Step 3: Review Contacts styling */
+.wa-import-summary-card {
+  background: var(--bg-secondary);
   border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  padding: 24px;
+  margin-bottom: 24px;
+}
+
+.wa-import-summary-card h3 {
+  font-size: 1rem;
+  font-weight: 700;
+  margin: 0 0 16px 0;
+  text-align: center;
+  color: var(--text-secondary);
+}
+
+.summary-stat-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+
+@media (max-width: 580px) {
+  .summary-stat-grid {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+}
+
+.stat-box {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-md);
+  padding: 16px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.01);
+}
+
+.stat-box .stat-num {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: var(--text-primary);
+}
+
+.stat-box .stat-label {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  font-weight: 500;
+}
+
+.stat-box.success {
+  border-color: rgba(120, 214, 75, 0.2);
+}
+
+.stat-box.success .stat-num {
+  color: var(--brand-primary);
+}
+
+.stat-box.error {
+  border-color: rgba(239, 68, 68, 0.2);
+}
+
+.stat-box.error .stat-num {
+  color: var(--error);
+}
+
+/* Table previews */
+.wa-contacts-preview-table-container,
+.wa-recipients-table-container {
+  max-height: 240px;
+  overflow-y: auto;
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  background: var(--bg-surface);
   margin-top: 16px;
 }
 
-/* Message textarea */
-.wa-textarea {
+.wa-contacts-preview-table {
   width: 100%;
-  min-height: 160px;
+  border-collapse: collapse;
+  font-size: 0.85rem;
+}
+
+.wa-contacts-preview-table th {
+  background: var(--bg-secondary);
+  color: var(--text-secondary);
+  font-weight: 600;
+  padding: 12px 16px;
+  text-align: left;
+  border-bottom: 1px solid var(--border-subtle);
+  position: sticky;
+  top: 0;
+  z-index: 1;
+}
+
+.wa-contacts-preview-table td {
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--border-subtle);
+  color: var(--text-primary);
+}
+
+.wa-contacts-preview-table tr:last-child td {
+  border-bottom: none;
+}
+
+.wa-contacts-preview-table tr.row-invalid {
+  background: rgba(239, 68, 68, 0.01);
+}
+
+.status-badge {
+  display: inline-flex;
+  padding: 2px 8px;
+  border-radius: var(--radius-full);
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+.status-badge.valid {
+  background: rgba(120, 214, 75, 0.08);
+  color: var(--brand-primary);
+}
+
+.status-badge.invalid {
+  background: rgba(239, 68, 68, 0.08);
+  color: var(--error);
+}
+
+/* Step 4: Select Recipients styling */
+.wa-filter-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+
+.wa-search-input {
+  flex: 1;
+  min-width: 200px;
+  padding: 10px 14px;
+  background: var(--bg-primary);
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-md);
+  color: var(--text-primary);
+  font-size: 0.875rem;
+  transition: all var(--transition-fast);
+}
+
+.wa-search-input:focus {
+  border-color: var(--brand-primary);
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(120, 214, 75, 0.08);
+}
+
+.selection-counter-text {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+}
+
+.wa-checkbox {
+  width: 16px;
+  height: 16px;
+  accent-color: var(--whatsapp);
+  cursor: pointer;
+}
+
+/* Step 5: Compose Message styling */
+.compose-container {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.compose-label {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+}
+
+.wa-compose-textarea {
+  width: 100%;
+  min-height: 150px;
   padding: 14px 16px;
   background: var(--bg-primary);
   border: 1px solid var(--border-default);
   border-radius: var(--radius-md);
   color: var(--text-primary);
-  font-size: 0.9375rem;
+  font-size: 0.92rem;
+  line-height: 1.5;
   resize: vertical;
   transition: all var(--transition-fast);
-  line-height: 1.6;
 }
 
-.wa-textarea:focus {
-  border-color: var(--whatsapp);
-  box-shadow: 0 0 0 3px rgba(37, 211, 102, 0.12);
+.wa-compose-textarea:focus {
+  border-color: var(--brand-primary);
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(120, 214, 75, 0.08);
 }
 
-.wa-textarea::placeholder {
-  color: var(--text-muted);
-}
-
-.wa-char-count {
-  text-align: right;
-  font-size: 0.775rem;
-  color: var(--text-muted);
-  margin-top: 6px;
-}
-
-.wa-char-warn {
-  color: var(--warning);
-}
-
-/* Delay setting */
-.wa-delay-row {
+.wa-compose-meta-row {
   display: flex;
+  justify-content: space-between;
   align-items: center;
   gap: 16px;
-  flex-wrap: wrap;
   margin-top: 8px;
+  flex-wrap: wrap;
 }
 
-.wa-delay-row label {
-  font-size: 0.8375rem;
-  color: var(--text-secondary);
+.delay-input-group {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.delay-input-group label {
+  font-size: 0.8rem;
+  color: var(--text-muted);
   font-weight: 500;
 }
 
-.wa-delay-select {
-  padding: 8px 14px;
+.wa-delay-dropdown {
+  padding: 6px 10px;
+  background: var(--bg-primary);
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-md);
+  color: var(--text-primary);
+  font-size: 0.85rem;
+  cursor: pointer;
+}
+
+.char-counter {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+
+.char-counter .warning {
+  color: var(--warning);
+  font-weight: bold;
+}
+
+/* Step 6: Campaign Summary styling */
+.summary-details-card {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  padding: 20px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.summary-field {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.9rem;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.04);
+  padding-bottom: 8px;
+}
+
+.summary-field:last-of-type {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.summary-field .label {
+  color: var(--text-muted);
+}
+
+.summary-field .value {
+  color: var(--text-primary);
+}
+
+.summary-field .value.status-ok {
+  color: var(--whatsapp);
+  font-weight: 600;
+}
+
+.summary-message-preview {
+  margin-top: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.preview-header {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+.preview-body {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-md);
+  padding: 12px 16px;
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+  white-space: pre-wrap;
+  max-height: 120px;
+  overflow-y: auto;
+  line-height: 1.5;
+}
+
+/* Broadcast progress in wizard */
+.wa-wizard-progress-section {
+  margin-top: 24px;
+  padding-top: 20px;
+  border-top: 1px solid var(--border-subtle);
+}
+
+.progress-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.progress-header h3 {
+  font-size: 0.95rem;
+  font-weight: 700;
+  margin: 0;
+  color: var(--text-primary);
+}
+
+.progress-values {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+}
+
+.progress-bar-track {
+  width: 100%;
+  height: 8px;
+  background: var(--bg-primary);
+  border-radius: 4px;
+  overflow: hidden;
+  margin-bottom: 14px;
+}
+
+.progress-bar-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--brand-primary), #62C035);
+  border-radius: 4px;
+  transition: width 0.4s ease;
+}
+
+.progress-stats-row {
+  display: flex;
+  gap: 16px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  margin-bottom: 14px;
+}
+
+.stat-sent { color: var(--whatsapp); }
+.stat-failed { color: var(--error); }
+.stat-pending { color: var(--text-muted); }
+
+.progress-current-info {
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.progress-finished-banner {
+  background: rgba(120, 214, 75, 0.08);
+  border: 1px solid rgba(120, 214, 75, 0.2);
+  color: var(--brand-primary);
+  padding: 12px 16px;
+  border-radius: var(--radius-md);
+  font-size: 0.875rem;
+  font-weight: 600;
+  text-align: center;
+  margin-top: 14px;
+}
+
+/* ── Button and UI Utilities ────────────────────────────────── */
+
+.wa-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 24px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  border-radius: var(--radius-md);
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.wa-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.wa-btn-primary {
+  background: var(--brand-primary);
+  color: white;
+  border-color: var(--brand-primary);
+  box-shadow: 0 2px 8px rgba(120, 214, 75, 0.2);
+}
+
+.wa-btn-primary:hover:not(:disabled) {
+  background: #68C43C;
+  border-color: #68C43C;
+}
+
+.wa-btn-secondary {
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  border-color: var(--border-default);
+}
+
+.wa-btn-secondary:hover:not(:disabled) {
+  background: var(--bg-secondary);
+}
+
+.wa-btn-ghost {
+  background: transparent;
+  color: var(--text-secondary);
+  border-color: transparent;
+}
+
+.wa-btn-ghost:hover:not(:disabled) {
+  background: var(--bg-secondary);
+}
+
+.wa-btn-success {
+  background: linear-gradient(135deg, var(--brand-primary), #62C035);
+  color: white;
+  border: none;
+  box-shadow: 0 4px 14px rgba(120, 214, 75, 0.25);
+  font-size: 0.95rem;
+  font-weight: 700;
+}
+
+.wa-btn-success:hover:not(:disabled) {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 18px rgba(120, 214, 75, 0.35);
+}
+
+.wa-btn-danger {
+  background: rgba(239, 68, 68, 0.08);
+  color: var(--error);
+  border-color: rgba(239, 68, 68, 0.15);
+}
+
+.wa-btn-danger:hover:not(:disabled) {
+  background: var(--error);
+  color: white;
+  border-color: var(--error);
+}
+
+.wa-btn-reveal {
+  background: var(--brand-primary);
+  color: white;
+  border: none;
+  padding: 8px 18px;
+  font-size: 0.85rem;
+  box-shadow: 0 2px 8px rgba(120, 214, 75, 0.25);
+}
+
+.wa-btn-reveal:hover {
+  background: #68C43C;
+}
+
+.wa-btn-sm {
+  padding: 6px 16px;
+  font-size: 0.8rem;
+}
+
+/* Spinner */
+.wa-spinner {
+  width: 28px;
+  height: 28px;
+  border: 3px solid rgba(0, 0, 0, 0.06);
+  border-top-color: var(--whatsapp);
+  border-radius: 50%;
+  animation: spinner-rotate 0.8s linear infinite;
+  display: inline-block;
+  margin: 0 auto;
+}
+
+.wa-spinner-sm {
+  width: 14px;
+  height: 14px;
+  border-width: 2px;
+}
+
+@keyframes spinner-rotate {
+  to { transform: rotate(360deg); }
+}
+
+/* ── Discovery UI & AI Composer ────────────────────────────── */
+
+.wa-discovery-container {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+.wa-discovery-section h3 {
+  font-size: 1.1rem;
+  color: var(--text-primary);
+  margin-bottom: 12px;
+}
+.wa-group-options {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.wa-group-option {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 12px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  cursor: pointer;
+  background: var(--bg-primary);
+  transition: all 0.2s;
+}
+.wa-group-option.selected {
+  border-color: var(--brand-primary);
+  background: rgba(120, 214, 75, 0.05);
+}
+.wa-quality-dashboard {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+  gap: 12px;
+}
+.wa-quality-stat {
+  padding: 12px;
+  border-radius: 8px;
+  background: var(--bg-secondary);
+  text-align: center;
+}
+.wa-score-stat {
+  background: rgba(120, 214, 75, 0.1);
+  border: 1px solid var(--brand-primary);
+}
+.wa-stat-label {
+  display: block;
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+}
+.wa-stat-value {
+  display: block;
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-top: 4px;
+}
+
+.wa-table-container {
+  overflow-x: auto;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+}
+.wa-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+.wa-table th, .wa-table td {
+  padding: 10px;
+  text-align: left;
+  border-bottom: 1px solid var(--border);
+  font-size: 0.85rem;
+}
+.wa-table th {
+  background: var(--bg-secondary);
+  color: var(--text-secondary);
+}
+
+.wa-ai-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 12px;
+  align-items: center;
+}
+.wa-ai-label {
+  font-size: 0.85rem;
+  color: var(--brand-primary);
+  font-weight: 600;
+}
+.wa-btn-chip {
+  padding: 6px 12px;
+  border-radius: 16px;
+  border: 1px solid var(--brand-primary);
+  background: transparent;
+  color: var(--brand-primary);
+  font-size: 0.8rem;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.wa-btn-chip:hover:not(:disabled) {
+  background: var(--brand-primary);
+  color: white;
+}
+.wa-btn-chip:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+.wa-ai-diff-container {
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 16px;
+  background: var(--bg-secondary);
+}
+.wa-ai-diff-header {
+  margin-bottom: 12px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.wa-ai-diff-panels {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+.wa-ai-panel {
+  flex: 1;
+  background: var(--bg-primary);
+  padding: 12px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+}
+.wa-ai-improved {
+  border-color: var(--whatsapp);
+}
+.wa-ai-panel-title {
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  margin-bottom: 8px;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+.wa-ai-panel-text {
+  font-size: 0.9rem;
+  white-space: pre-wrap;
+  color: var(--text-primary);
+}
+.wa-ai-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+}
+
+/* ── Summary & Live Preview ────────────────────────────── */
+
+.wa-summary-container {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+@media (min-width: 768px) {
+  .wa-summary-container {
+    flex-direction: row;
+  }
+  .wa-summary-left {
+    flex: 3;
+  }
+  .wa-summary-right {
+    flex: 2;
+  }
+}
+
+.wa-campaign-review-box {
+  background: var(--bg-primary);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 16px;
+}
+
+.wa-phone-preview {
+  width: 100%;
+  max-width: 320px;
+  margin: 0 auto;
+  border-radius: 24px;
+  border: 8px solid #111b21;
+  background: #efeae2; /* Default WhatsApp chat background */
+  overflow: hidden;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+  display: flex;
+  flex-direction: column;
+  height: 480px;
+}
+
+.wa-phone-header {
+  background: #4A4A4A;
+  color: white;
+  padding: 12px 16px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.wa-phone-avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: #dfe5e7;
+}
+
+.wa-phone-contact-name {
+  font-weight: 600;
+  font-size: 1rem;
+}
+
+.wa-phone-body {
+  padding: 16px;
+  flex: 1;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.wa-chat-bubble {
+  background: white;
+  padding: 8px 12px;
+  border-radius: 8px;
+  border-top-left-radius: 0;
+  max-width: 85%;
+  align-self: flex-start;
+  box-shadow: 0 1px 1px rgba(0,0,0,0.05);
+  font-size: 0.9rem;
+  color: #111b21;
+  position: relative;
+  white-space: pre-wrap;
+}
+
+.wa-chat-time {
+  font-size: 0.65rem;
+  color: #667781;
+  text-align: right;
+  margin-top: 4px;
+}
+
+/* Smart Contact Discovery Styles */
+.wa-discovery-container {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  margin-top: 16px;
+}
+
+.wa-discovery-section {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.wa-discovery-section h3 {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin: 0;
+}
+
+.wa-import-summary-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  margin-bottom: 8px;
+}
+
+@media (max-width: 768px) {
+  .wa-import-summary-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 480px) {
+  .wa-import-summary-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.wa-summary-stat-card {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-md);
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  box-shadow: var(--shadow-sm);
+  transition: transform var(--transition-fast);
+}
+
+.wa-summary-stat-card:hover {
+  transform: translateY(-2px);
+}
+
+.wa-summary-stat-card.success {
+  border-left: 4px solid var(--brand-primary);
+}
+
+.wa-summary-stat-card.warning {
+  border-left: 4px solid var(--warning);
+}
+
+.wa-summary-stat-card.info {
+  border-left: 4px solid var(--info);
+}
+
+.wa-stat-card-label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.wa-stat-card-value {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.wa-stat-card-value.text-success, .text-success {
+  color: var(--brand-primary) !important;
+}
+
+.wa-stat-card-value.text-warning, .text-warning {
+  color: var(--warning) !important;
+}
+
+.wa-stat-card-value.text-info, .text-info {
+  color: var(--info) !important;
+}
+
+.text-error {
+  color: var(--error) !important;
+}
+
+/* Group Selection Styles */
+.wa-group-options {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 16px;
+}
+
+.wa-group-option {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-md);
+  padding: 16px;
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  box-shadow: var(--shadow-sm);
+}
+
+.wa-group-option:hover {
+  border-color: var(--border-hover);
+  background: var(--bg-surface-hover);
+}
+
+.wa-group-option.selected {
+  border-color: var(--brand-primary);
+  background: var(--success-bg);
+}
+
+.wa-group-option input[type="radio"] {
+  margin-top: 4px;
+  accent-color: var(--brand-primary);
+}
+
+.wa-text-sm {
+  font-size: 0.8rem;
+}
+
+.text-secondary {
+  color: var(--text-secondary);
+}
+
+/* Quality Dashboard Styles */
+.wa-quality-dashboard {
+  display: grid;
+  gap: 16px;
+  background: var(--bg-primary);
+  border-radius: var(--radius-md);
+  padding: 16px;
+  border: 1px dashed var(--border-default);
+}
+
+.wa-quality-stat {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-sm);
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  align-items: center;
+  text-align: center;
+}
+
+.wa-quality-stat.wa-score-stat {
+  border-left: 4px solid var(--brand-primary);
+}
+
+.wa-stat-label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--text-muted);
+}
+
+.wa-stat-value {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+/* Summary Layout Step */
+.wa-summary-container {
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: 24px;
+  margin-top: 16px;
+  margin-bottom: 24px;
+}
+
+@media (max-width: 992px) {
+  .wa-summary-container {
+    grid-template-columns: 1fr;
+  }
+}
+
+.wa-summary-left {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.wa-summary-right {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Dual Connection Mode Switcher styles */
+.wa-connection-mode-tabs {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 24px;
+  border-bottom: 1px solid var(--border-default);
+  padding-bottom: 12px;
+}
+
+.wa-mode-tab-btn {
+  background: var(--bg-secondary);
+  color: var(--text-secondary);
+  padding: 8px 16px;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+  font-family: inherit;
+  transition: all var(--transition-fast);
+}
+
+.wa-mode-tab-btn:hover {
+  background: var(--bg-surface-hover);
+  color: var(--text-primary);
+}
+
+.wa-mode-tab-btn.active {
+  background: var(--brand-primary) !important;
+  color: white !important;
+}
+
+/* Cloud API Form styling */
+.wa-cloud-api-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* ==========================================================================
+   Redesigned Composer Workspace Styling
+   ========================================================================== */
+
+.wa-composer-workspace {
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr; /* 60% / 40% ratio */
+  gap: 32px;
+  align-items: start;
+  margin-top: 16px;
+  animation: fadeIn var(--transition-base);
+}
+
+@media (max-width: 992px) {
+  .wa-composer-workspace {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+}
+
+.wa-composer-left {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.wa-composer-right {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+@media (max-width: 992px) {
+  .wa-composer-right {
+    position: static;
+  }
+}
+
+/* Recipient Context alert card */
+.wa-recipient-context-card {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+  gap: 16px;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-lg);
+  padding: 20px;
+  box-shadow: var(--shadow-sm);
+  position: relative;
+  overflow: hidden;
+}
+
+.wa-recipient-context-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: 4px;
+  background: var(--brand-primary);
+}
+
+.wa-recipient-context-card .context-item {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.wa-recipient-context-card .context-label {
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.wa-recipient-context-card .context-value {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  word-break: break-word;
+}
+
+.wa-recipient-context-card .context-value.badge-count {
+  color: var(--brand-primary);
+}
+
+.wa-recipient-context-card .context-warning-alert {
+  grid-column: 1 / -1;
+  background: var(--warning-bg);
+  border: 1px solid rgba(245, 158, 11, 0.2);
+  color: var(--warning);
+  padding: 10px 14px;
+  border-radius: var(--radius-sm);
+  font-size: 0.8rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 4px;
+}
+
+/* Template Picker Styling */
+.wa-template-picker-card {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-lg);
+  padding: 24px;
+  box-shadow: var(--shadow-sm);
+}
+
+.card-section-title {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 4px;
+}
+
+.card-section-desc {
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  margin-bottom: 16px;
+}
+
+.template-chips-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.template-chip {
+  background: var(--bg-secondary);
+  color: var(--text-secondary);
+  padding: 8px 16px;
+  border-radius: var(--radius-full);
+  font-size: 0.82rem;
+  font-weight: 600;
+  border: 1px solid var(--border-default);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.template-chip:hover {
+  background: var(--bg-surface-hover);
+  border-color: var(--border-hover);
+  color: var(--text-primary);
+}
+
+.template-chip.active {
+  background: var(--brand-primary);
+  color: white;
+  border-color: var(--brand-primary);
+  box-shadow: 0 2px 8px rgba(120, 214, 75, 0.25);
+}
+
+.template-preview-actions {
+  margin-top: 18px;
+  border-top: 1px solid var(--border-subtle);
+  padding-top: 16px;
+  animation: fadeIn var(--transition-fast);
+}
+
+.template-actions-header {
+  font-size: 0.82rem;
+  color: var(--text-secondary);
+  margin-bottom: 8px;
+}
+
+.template-preview-box {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-md);
+  padding: 14px;
+  font-family: inherit;
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  white-space: pre-wrap;
+  max-height: 150px;
+  overflow-y: auto;
+  line-height: 1.5;
+  margin-bottom: 14px;
+}
+
+.template-actions-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+/* Variables helper styling */
+.wa-variables-helper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 12px;
+  flex-wrap: wrap;
+}
+
+.helper-label {
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--text-muted);
+}
+
+.variable-chips {
+  display: flex;
+  gap: 8px;
+}
+
+.variable-chip {
+  background: rgba(120, 214, 75, 0.08);
+  border: 1px solid rgba(120, 214, 75, 0.2);
+  color: var(--text-accent);
+  padding: 6px 12px;
+  border-radius: var(--radius-sm);
+  font-size: 0.8rem;
+  font-family: monospace;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.variable-chip:hover {
+  background: var(--brand-primary);
+  color: white;
+  border-color: var(--brand-primary);
+  transform: translateY(-1px);
+}
+
+/* Message editor and Auto-grow textarea styling */
+.wa-editor-section {
+  display: flex;
+  flex-direction: column;
+}
+
+.wa-editor-wrapper {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+  transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.wa-editor-wrapper:focus-within {
+  border-color: var(--brand-primary);
+  box-shadow: 0 0 0 3px rgba(120, 214, 75, 0.1);
+}
+
+.wa-modern-textarea {
+  width: 100%;
+  min-height: 180px;
+  padding: 18px;
+  border: none;
+  background: transparent;
+  color: var(--text-primary);
+  font-size: 0.95rem;
+  line-height: 1.6;
+  resize: none;
+  font-family: inherit;
+  outline: none;
+}
+
+.wa-editor-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 18px;
+  border-top: 1px solid var(--border-subtle);
+  background: var(--bg-primary);
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+
+.wa-autosave-indicator {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--text-muted);
+}
+
+.wa-autosave-indicator .save-icon {
+  color: var(--brand-primary);
+  font-weight: bold;
+}
+
+.wa-autosave-indicator .save-text {
+  font-style: italic;
+  font-size: 0.75rem;
+}
+
+.wa-autosave-indicator .save-time {
+  font-style: italic;
+  font-size: 0.75rem;
+  margin-left: 2px;
+}
+
+.wa-char-counter {
+  font-weight: 500;
+}
+
+.wa-char-counter.warning-near-limit {
+  color: var(--error);
+  font-weight: 700;
+  animation: pulse 1s infinite alternate;
+}
+
+@keyframes pulse {
+  from { opacity: 0.8; }
+  to { opacity: 1; }
+}
+
+/* Deliverability Health styling */
+.wa-health-indicator-card {
+  margin-top: 12px;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-md);
+  padding: 12px 16px;
+}
+
+.health-status-header {
+  font-size: 0.82rem;
+  font-weight: 700;
+}
+
+.health-status-header.status-good {
+  color: var(--brand-primary);
+}
+
+.health-status-header.status-warning {
+  color: var(--warning);
+}
+
+.health-issues-list {
+  margin: 6px 0 0 0;
+  padding-left: 0;
+  list-style: none;
+}
+
+.health-issue-item {
+  font-size: 0.78rem;
+  color: var(--text-secondary);
+  line-height: 1.4;
+  margin-bottom: 2px;
+}
+
+/* AI assistant tools styling */
+.wa-ai-tools-card {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-lg);
+  padding: 24px;
+  box-shadow: var(--shadow-sm);
+}
+
+.ai-buttons-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
+  gap: 10px;
+}
+
+.wa-ai-btn {
+  background: var(--bg-secondary);
+  color: var(--text-secondary);
+  padding: 8px 12px;
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-sm);
+  font-size: 0.82rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  text-align: center;
+}
+
+.wa-ai-btn:hover:not(:disabled) {
+  border-color: var(--brand-primary);
+  color: var(--brand-primary);
+  background: var(--bg-surface-hover);
+}
+
+.wa-ai-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* AI suggestion panel styling */
+.wa-ai-suggestion-box {
+  margin-top: 16px;
+  border: 1px solid var(--border-accent);
+  background: rgba(120, 214, 75, 0.03);
+  border-radius: var(--radius-md);
+  padding: 16px;
+  animation: slideDown var(--transition-base);
+}
+
+@keyframes slideDown {
+  from { transform: translateY(-8px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+.suggestion-title {
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: var(--brand-primary);
+  margin-bottom: 4px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.suggestion-explanation {
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  margin-bottom: 12px;
+}
+
+.suggestion-compare-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-bottom: 14px;
+}
+
+@media (max-width: 576px) {
+  .suggestion-compare-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.compare-panel {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-sm);
+  padding: 10px 12px;
+}
+
+.compare-panel.after-panel {
+  border-color: rgba(120, 214, 75, 0.3);
+  background: rgba(120, 214, 75, 0.02);
+}
+
+.compare-panel .panel-label {
+  display: block;
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  margin-bottom: 6px;
+}
+
+.compare-panel .panel-body {
+  font-size: 0.82rem;
+  color: var(--text-secondary);
+  white-space: pre-wrap;
+  line-height: 1.4;
+}
+
+.suggestion-action-buttons {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+/* Campaign settings card styling */
+.wa-campaign-settings-card {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-lg);
+  padding: 24px;
+  box-shadow: var(--shadow-sm);
+}
+
+.settings-fields-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.settings-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.settings-field-label {
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+}
+
+.delay-selector-container {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.wa-modern-select {
+  padding: 10px 14px;
   background: var(--bg-primary);
   border: 1px solid var(--border-default);
   border-radius: var(--radius-md);
   color: var(--text-primary);
   font-size: 0.875rem;
   cursor: pointer;
-  transition: all var(--transition-fast);
-}
-
-.wa-delay-select:focus {
-  border-color: var(--whatsapp);
+  min-width: 200px;
   outline: none;
+  transition: border-color var(--transition-fast);
 }
 
-/* Send button */
-.wa-send-btn {
-  background: linear-gradient(135deg, #25D366, #128C7E);
-  color: white;
-  border: none;
-  border-radius: var(--radius-md);
-  padding: 14px 32px;
-  font-size: 1rem;
+.wa-modern-select:focus {
+  border-color: var(--brand-primary);
+}
+
+.recommended-badge {
+  background: rgba(120, 214, 75, 0.08);
+  border: 1px solid rgba(120, 214, 75, 0.2);
+  color: var(--text-accent);
+  padding: 4px 10px;
+  border-radius: var(--radius-full);
+  font-size: 0.75rem;
   font-weight: 700;
+}
+
+.settings-checkboxes-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  margin-top: 4px;
+}
+
+.settings-checkbox-label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.85rem;
+  color: var(--text-secondary);
   cursor: pointer;
+  font-weight: 500;
+}
+
+/* Action bar styling */
+.composer-action-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 1px solid var(--border-default);
+  padding-top: 24px;
+  margin-top: 8px;
+}
+
+.continue-cta-btn {
+  font-size: 0.95rem;
+  padding: 12px 28px;
+}
+
+/* ==========================================================================
+   WhatsApp Live Preview Column Styling
+   ========================================================================== */
+
+.preview-sticky-container {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-xl);
+  padding: 24px;
+  box-shadow: var(--shadow-md);
+  width: 100%;
+}
+
+.preview-header-bar {
+  margin-bottom: 20px;
+  border-bottom: 1px solid var(--border-subtle);
+  padding-bottom: 12px;
+}
+
+.preview-header-bar h3 {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.preview-header-bar p {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  margin-top: 2px;
+}
+
+.whatsapp-phone-mockup {
+  width: 100%;
+  border-radius: 20px;
+  border: 10px solid #111b21;
+  background: #efeae2; /* Realistic light WhatsApp doodle pattern bg color */
+  overflow: hidden;
+  box-shadow: var(--shadow-lg);
+  display: flex;
+  flex-direction: column;
+  height: 460px;
+}
+
+.whatsapp-phone-header {
+  background: #005c4b; /* Traditional WhatsApp header green */
+  color: white;
+  padding: 12px 14px;
   display: flex;
   align-items: center;
   gap: 10px;
-  transition: all var(--transition-fast);
-  box-shadow: 0 4px 20px rgba(37, 211, 102, 0.3);
-  width: 100%;
-  justify-content: center;
 }
 
-.wa-send-btn:hover:not(:disabled) {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 28px rgba(37, 211, 102, 0.4);
-}
-
-.wa-send-btn:disabled {
-  opacity: 0.45;
-  cursor: not-allowed;
-  transform: none;
-}
-
-/* ── Progress Section ────────────────────────────────────────── */
-
-.wa-progress-section {
-  background: var(--bg-surface);
-  border: 1px solid var(--border-subtle);
-  border-radius: var(--radius-xl);
-  padding: 28px;
-  animation: fadeUp 0.4s ease;
-}
-
-@keyframes fadeUp {
-  from { opacity: 0; transform: translateY(16px); }
-  to   { opacity: 1; transform: translateY(0); }
-}
-
-.wa-progress-header {
+.avatar-placeholder {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: #dfe5e7;
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  margin-bottom: 20px;
+  justify-content: center;
+  font-size: 1.1rem;
 }
 
-.wa-progress-header h3 {
-  font-size: 1.05rem;
+.recipient-details {
+  display: flex;
+  flex-direction: column;
+}
+
+.recipient-name {
+  font-weight: 600;
+  font-size: 0.88rem;
+  line-height: 1.2;
+}
+
+.recipient-phone-status {
+  font-size: 0.68rem;
+  opacity: 0.85;
+}
+
+.whatsapp-phone-body {
+  padding: 16px;
+  flex: 1;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  background-image: radial-gradient(rgba(0, 0, 0, 0.03) 1px, transparent 1px);
+  background-size: 12px 12px;
+}
+
+.whatsapp-chat-bubble-sent {
+  background: #d9fdd3; /* Traditional WhatsApp green bubble color */
+  border-radius: 8px;
+  border-top-right-radius: 0;
+  align-self: flex-end;
+  padding: 8px 12px;
+  max-width: 85%;
+  box-shadow: 0 1px 0.5px rgba(0, 0, 0, 0.12);
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  word-wrap: break-word;
+  position: relative;
+}
+
+.whatsapp-chat-bubble-sent::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: -8px;
+  width: 0;
+  height: 0;
+  border: 8px solid transparent;
+  border-left-color: #d9fdd3;
+  border-top-color: #d9fdd3;
+}
+
+.bubble-text-content {
+  font-size: 0.88rem;
+  color: #111b21;
+  line-height: 1.4;
+}
+
+.bubble-text-content strong {
   font-weight: 700;
-  margin: 0;
 }
 
-.wa-progress-counts {
-  font-size: 1.5rem;
-  font-weight: 800;
-  color: var(--whatsapp);
+.bubble-text-content em {
+  font-style: italic;
 }
 
-.wa-progress-sub {
+.bubble-text-content del {
+  text-decoration: line-through;
+}
+
+.bubble-text-content code {
+  font-family: monospace;
+  background: rgba(0, 0, 0, 0.05);
+  padding: 2px 4px;
+  border-radius: 3px;
   font-size: 0.8rem;
+}
+
+.bubble-text-content .preview-var {
+  color: #005c4b;
+  font-weight: bold;
+  background: rgba(0, 92, 75, 0.05);
+  padding: 0 2px;
+  border-radius: 2px;
+}
+
+.bubble-meta {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 4px;
+  align-self: flex-end;
+  margin-top: 2px;
+}
+
+.bubble-timestamp {
+  font-size: 0.65rem;
+  color: #667781;
+}
+
+.bubble-checkmarks {
+  font-size: 0.75rem;
+  color: #53bdeb; /* Light blue checks (read/delivered status) */
+  font-weight: bold;
+  line-height: 1;
+}
+
+.wa-onboarding-page.composer-step-active {
+  max-width: 1200px;
+}
+
+.wa-composer-step-card {
+  background: transparent !important;
+  border: none !important;
+  padding: 0 !important;
+  box-shadow: none !important;
+}
+
+/* ── Connection Steps UI ────────────────────────────────────── */
+
+.wa-steps-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-top: 12px;
+  margin-bottom: 24px;
+}
+
+.wa-step-item {
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+  padding: 12px;
+  border-radius: var(--radius-md);
+  background: var(--bg-primary);
+  border: 1px solid var(--border-default);
+  transition: all var(--transition-base);
+}
+
+.wa-step-item-completed {
+  border-color: rgba(120, 214, 75, 0.2);
+  background: rgba(120, 214, 75, 0.02);
+  opacity: 0.85;
+}
+
+.wa-step-item-current {
+  border-color: var(--brand-primary);
+  background: rgba(120, 214, 75, 0.05);
+  box-shadow: 0 0 0 1px var(--brand-primary);
+}
+
+.wa-step-item-pending {
+  border-color: var(--border-subtle);
+  background: var(--bg-surface);
+  opacity: 0.6;
+}
+
+.step-indicator {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  font-size: 0.85rem;
+  font-weight: 700;
+}
+
+.wa-step-item-completed .step-indicator {
+  background: var(--brand-primary);
+  color: white;
+}
+
+.wa-step-item-current .step-indicator {
+  background: var(--brand-primary);
+  color: white;
+  animation: pulse-ring 2s infinite;
+}
+
+.wa-step-item-pending .step-indicator {
+  background: var(--border-default);
   color: var(--text-muted);
 }
 
-.wa-progress-bar-track {
-  width: 100%;
-  height: 10px;
-  background: var(--bg-primary);
+.step-content {
+  flex: 1;
+}
+
+.step-content h4 {
+  font-size: 0.9rem;
+  font-weight: 600;
+  margin: 0 0 4px 0;
+  color: var(--text-primary);
+}
+
+.step-content p {
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  margin: 0;
+  line-height: 1.4;
+}
+
+@keyframes pulse-ring {
+  0% { box-shadow: 0 0 0 0 rgba(120, 214, 75, 0.4); }
+  70% { box-shadow: 0 0 0 6px rgba(120, 214, 75, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(120, 214, 75, 0); }
+}
+
+/* ── Interactive QR and loading UX updates ─────────────────── */
+
+.wa-loading-msg {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-top: 8px;
+  text-align: center;
+}
+
+.wa-timeout-warning-box {
+  margin-top: 16px;
+  padding: 12px;
+  border-radius: var(--radius-md);
+  background: rgba(230, 162, 60, 0.08);
+  border: 1px solid rgba(230, 162, 60, 0.2);
+  text-align: center;
+  max-width: 90%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.wa-timeout-warning-box.error {
+  background: rgba(239, 68, 68, 0.08);
+  border-color: rgba(239, 68, 68, 0.2);
+}
+
+.wa-warning-text {
+  font-size: 0.75rem;
+  color: var(--text-primary);
+  margin: 0;
+  line-height: 1.4;
+}
+
+.wa-countdown-badge {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #000000;
+  background: var(--bg-secondary);
+  padding: 6px 12px;
   border-radius: var(--radius-full);
-  overflow: hidden;
+  border: 1px solid var(--border-subtle);
+  margin-top: 8px;
+}
+
+.wa-qr-container-col {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  width: 100%;
+}
+
+.wa-qr-hint {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #000000;
+  text-align: center;
+  margin: 0;
+  max-width: 280px;
+  line-height: 1.5;
+}
+
+/* ── Troubleshooting Block ─────────────────────────────────── */
+
+.wa-troubleshooting-card {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  padding: 20px;
+}
+
+.wa-troubleshooting-card h4 {
+  font-size: 0.95rem;
+  font-weight: 700;
+  margin: 0 0 8px 0;
+  color: var(--text-primary);
+}
+
+.troubleshoot-intro {
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  margin: 0 0 12px 0;
+}
+
+.troubleshoot-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.troubleshoot-list li {
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  line-height: 1.4;
+}
+
+/* ── Diagnostics Health Card ─────────────────────────────── */
+
+.wa-connection-health-card {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  padding: 20px;
+  width: 100%;
+}
+
+.health-card-header {
   margin-bottom: 14px;
 }
 
-.wa-progress-bar-fill {
-  height: 100%;
-  background: linear-gradient(90deg, #25D366, #128C7E);
-  border-radius: var(--radius-full);
-  transition: width 0.5s ease;
-  position: relative;
-  overflow: hidden;
-}
-
-.wa-progress-bar-fill::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.25), transparent);
-  animation: shimmer 1.5s infinite;
-}
-
-@keyframes shimmer {
-  from { transform: translateX(-100%); }
-  to   { transform: translateX(100%); }
-}
-
-.wa-progress-stats {
-  display: flex;
-  gap: 24px;
-  flex-wrap: wrap;
-}
-
-.wa-progress-stat {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  font-size: 0.8375rem;
-}
-
-.wa-progress-stat-dot {
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-}
-
-.wa-progress-stat-dot.sent { background: var(--whatsapp); }
-.wa-progress-stat-dot.failed { background: var(--error); }
-.wa-progress-stat-dot.pending { background: var(--text-muted); }
-
-.wa-progress-current {
-  margin-top: 14px;
-  font-size: 0.8125rem;
-  color: var(--text-muted);
-  display: flex;
-  align-items: center;
-  gap: 6px;
-}
-
-.wa-progress-current .spinner {
-  width: 14px;
-  height: 14px;
-  border-width: 2px;
-  border-top-color: var(--whatsapp);
-  border-color: rgba(37,211,102,0.2);
-  border-top-color: var(--whatsapp);
-}
-
-.wa-done-banner {
-  margin-top: 16px;
-  padding: 14px 18px;
-  border-radius: var(--radius-md);
-  background: rgba(37, 211, 102, 0.08);
-  border: 1px solid rgba(37, 211, 102, 0.2);
-  color: var(--whatsapp);
-  font-weight: 600;
-  font-size: 0.9rem;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
-/* Locked overlay for send panel when not connected */
-.wa-locked-overlay {
-  text-align: center;
-  padding: 56px 32px;
-}
-
-.wa-locked-icon {
-  font-size: 3.5rem;
-  margin-bottom: 16px;
-  opacity: 0.25;
-}
-
-.wa-locked-title {
-  font-size: 1.1rem;
+.health-card-header h3 {
+  font-size: 0.95rem;
   font-weight: 700;
-  color: var(--text-secondary);
-  margin-bottom: 8px;
+  margin: 0;
+  color: var(--text-primary);
 }
 
-.wa-locked-sub {
-  font-size: 0.875rem;
-  color: var(--text-muted);
+.health-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px 20px;
 }
 
-/* Divider helper */
-.wa-upload-divider {
+@media (max-width: 480px) {
+  .health-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.health-item {
   display: flex;
-  align-items: center;
-  gap: 12px;
-  margin: 16px 0;
-  color: var(--text-muted);
-  font-size: 0.775rem;
+  flex-direction: column;
+  gap: 4px;
 }
 
-.wa-upload-divider::before,
-.wa-upload-divider::after {
-  content: '';
-  flex: 1;
-  height: 1px;
-  background: var(--border-subtle);
+.health-lbl {
+  font-size: 0.725rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-weight: 600;
 }
+
+.health-val {
+  font-size: 0.825rem;
+  color: var(--text-primary);
+  font-weight: 600;
+}
+
+.health-val.status-connected,
+.health-val.webhook-verified {
+  color: var(--brand-primary);
+}
+
+.health-val.status-qr_ready {
+  color: var(--warning);
+}
+
+.health-val.status-initializing {
+  color: #409eff;
+}
+
+.health-val.status-disconnected,
+.health-val.webhook-pending,
+.health-val.qr-expired {
+  color: var(--error);
+}
+
+.health-val.qr-active {
+  color: var(--brand-primary);
+}
+
+
+

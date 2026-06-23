@@ -1,0 +1,6 @@
+Full Name,Phone Number,Email,Group,Role
+Alice Smith,+919876543210,alice@example.com,Leaders,Organizer
+Bob Johnson,+919876543211,bob@example.com,Members,Speaker
+Charlie Brown,+919876543212,charlie@example.com,Members,Attendee
+Alice Smith,+919876543210,alice@example.com,Leaders,Organizer
+Invalid User,12345,invalid@example.com,Members,Attendee

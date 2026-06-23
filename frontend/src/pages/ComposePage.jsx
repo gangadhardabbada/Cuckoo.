@@ -18,10 +18,6 @@ export default function ComposePage() {
 
   const MAX_CHARS = 1024;
 
-  useEffect(() => {
-    loadLists();
-  }, []);
-
   const loadLists = async () => {
     try {
       const res = await contactsAPI.getLists();
@@ -32,6 +28,10 @@ export default function ComposePage() {
       setLoading(false);
     }
   };
+
+  useEffect(() => {
+    loadLists();
+  }, []);
 
   useEffect(() => {
     if (selectedList) {
@@ -173,7 +173,7 @@ Thank you!"
             <div className="whatsapp-preview-header">
               <div className="whatsapp-preview-header-avatar">📨</div>
               <div>
-                <div className="whatsapp-preview-header-name">WA Broadcaster</div>
+                <div className="whatsapp-preview-header-name">Cuckoo</div>
                 <div className="whatsapp-preview-header-status">online</div>
               </div>
             </div>

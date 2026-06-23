@@ -12,6 +12,8 @@ whatsapp-service/.wwebjs_cache/
 whatsapp-service/.wwebjs_*
 
 # ── Frontend build output ────────────────────────────────────────
+dist/
+build/
 frontend/dist/
 frontend/.vite/
 
@@ -34,6 +36,7 @@ backend/instance/
 # ── Environment files ────────────────────────────────────────────
 .env
 .env.local
+.env.*
 .env.*.local
 # Keep .env.example so others know what vars to set
 !.env.example

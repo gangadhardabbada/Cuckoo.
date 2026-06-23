@@ -22,11 +22,11 @@ export default function LandingPage() {
       {/* Header */}
       <header className="landing-header">
         <div className="landing-brand">
-          <span className="landing-brand-icon">📨</span>
-          <span className="landing-brand-name">WA Broadcaster</span>
+          <img src="/logo.png" className="landing-brand-logo" alt="Cuckoo logo" style={{ height: '32px', width: '32px', objectFit: 'contain' }} />
+          <span className="landing-brand-name">Cuckoo</span>
         </div>
         <button className="btn btn-primary btn-sm" onClick={handleGetStarted}>
-          {isAuthenticated ? 'Dashboard' : 'Get Started'}
+          {isAuthenticated ? 'Home' : 'Get Started'}
         </button>
       </header>
 
@@ -74,7 +74,7 @@ export default function LandingPage() {
       {/* Features */}
       <section className="landing-features" id="features">
         <h2 className="landing-section-title">
-          Why Use <span className="gradient-text">WA Broadcaster</span>?
+          Why Use <span className="gradient-text">Cuckoo</span>?
         </h2>
         <p className="landing-section-sub">
           Stop exposing your contacts in messy group chats. Send professional, private messages at scale.
@@ -154,7 +154,7 @@ export default function LandingPage() {
 
       {/* Footer */}
       <footer className="landing-footer">
-        <p>© 2026 WA Broadcaster. Built with ❤️ for private messaging.</p>
+        <p>© 2026 Cuckoo. Built with ❤️ for private messaging.</p>
       </footer>
     </div>
   );

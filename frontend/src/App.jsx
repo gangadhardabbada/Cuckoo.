@@ -7,9 +7,11 @@ import LandingPage from './pages/LandingPage';
 import AuthPage from './pages/AuthPage';
 import DashboardPage from './pages/DashboardPage';
 import ContactsPage from './pages/ContactsPage';
-import ComposePage from './pages/ComposePage';
 import CampaignsPage from './pages/CampaignsPage';
 import WhatsAppPage from './pages/WhatsAppPage';
+import SettingsPage from './pages/SettingsPage';
+import FAQPage from './pages/FAQPage';
+import ProfilePage from './pages/ProfilePage';
 
 // Protected route wrapper
 function ProtectedRoute() {
@@ -51,6 +53,10 @@ function PublicRoute({ children }) {
     );
   }
 
+  if (isAuthenticated) {
+    return <Navigate to="/dashboard" replace />;
+  }
+
   return children;
 }
 
@@ -68,9 +74,11 @@ function App() {
             <Route element={<ProtectedRoute />}>
               <Route path="/dashboard" element={<DashboardPage />} />
               <Route path="/contacts" element={<ContactsPage />} />
-              <Route path="/compose" element={<ComposePage />} />
               <Route path="/campaigns" element={<CampaignsPage />} />
-              <Route path="/whatsapp" element={<WhatsAppPage />} />
+              <Route path="/broadcast" element={<WhatsAppPage />} />
+              <Route path="/faq" element={<FAQPage />} />
+              <Route path="/profile" element={<ProfilePage />} />
+              <Route path="/settings" element={<SettingsPage />} />
             </Route>
 
             {/* Fallback */}

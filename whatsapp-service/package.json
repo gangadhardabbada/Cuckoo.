@@ -8,12 +8,14 @@
     "dev": "node --watch server.js"
   },
   "dependencies": {
+    "@google/genai": "^2.9.0",
     "cors": "^2.8.5",
     "express": "^4.19.2",
+    "libphonenumber-js": "^1.13.7",
     "multer": "^1.4.5-lts.1",
     "qrcode": "^1.5.4",
     "socket.io": "^4.7.5",
     "whatsapp-web.js": "^1.26.1-alpha.3",
-    "xlsx": "^0.18.5"
+    "xlsx": "https://cdn.sheetjs.com/xlsx-0.20.1/xlsx-0.20.1.tgz"
   }
 }
